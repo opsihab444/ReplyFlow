@@ -1,0 +1,20 @@
+{
+  "name": "replyflow",
+  "version": "1.0.0",
+  "description": "ReplyFlow - Smart WhatsApp Auto Reply Bot with modern web interface using Baileys library",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": ["replyflow", "whatsapp", "bot", "auto-reply", "baileys", "smart-reply"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.8",
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "qrcode": "^1.5.3",
+    "uuid": "^9.0.1"
+  }
+}

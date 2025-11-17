@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReplyFlow - <%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            whatsapp: { 500: '#25D366', 600: '#20BA5A', 700: '#1B9E4E' }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .animate-fadeIn { animation: fadeIn 0.6s ease-out; }
+    .animate-slideIn { animation: slideIn 0.4s ease-out; }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    .dark .glass { background: rgba(31, 41, 55, 0.7); border: 1px solid rgba(75, 85, 99, 0.3); }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen">
+  
+  <!-- Sidebar -->
+  <aside class="fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 shadow-2xl z-40">
+    <div class="p-6">
+      <div class="flex items-center space-x-3 mb-8">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg animate-float">
+          <img src="/logo.svg" alt="ReplyFlow Logo" class="w-full h-full">
+        </div>
+        <div>
+          <h1 class="text-lg font-bold bg-gradient-to-r from-whatsapp-500 to-whatsapp-700 bg-clip-text text-transparent">ReplyFlow</h1>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Smart Auto Reply</p>
+        </div>
+      </div>
+
+      <nav class="space-y-2">
+        <a href="/" class="flex items-center space-x-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all">
+          <i class="fas fa-home text-lg"></i>
+          <span class="font-medium">Dashboard</span>
+        </a>
+        <a href="/rules" class="flex items-center space-x-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all">
+          <i class="fas fa-list text-lg"></i>
+          <span class="font-medium">Rules</span>
+        </a>
+        <a href="/logs" class="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-whatsapp-500 to-whatsapp-600 text-white rounded-xl shadow-lg">
+          <i class="fas fa-history text-lg"></i>
+          <span class="font-medium">Logs</span>
+        </a>
+      </nav>
+
+      <div class="absolute bottom-6 left-6 right-6">
+        <button id="themeToggle" class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all flex items-center justify-center space-x-2">
+          <i class="fas fa-moon dark:hidden text-gray-700"></i>
+          <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+          <span class="font-medium text-gray-700 dark:text-gray-300">Toggle Theme</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="ml-64 p-8">
+    
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8 animate-fadeIn">
+      <div>
+        <h2 class="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-2 flex items-center">
+          <i class="fas fa-history text-blue-500 mr-3"></i>Message Logs
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400">Monitor your ReplyFlow message activity in real-time</p>
+      </div>
+      <div class="flex items-center space-x-3 px-6 py-3 glass rounded-2xl">
+        <div class="animate-pulse">
+          <i class="fas fa-sync-alt text-whatsapp-500 text-lg"></i>
+        </div>
+        <span class="text-gray-700 dark:text-gray-300 font-medium">Auto-refresh: 5s</span>
+      </div>
+    </div>
+
+    <!-- Logs Container -->
+    <div class="glass rounded-3xl shadow-2xl overflow-hidden">
+      <div id="logsContainer">
+        <div class="flex items-center justify-center py-20">
+          <div class="animate-spin">
+            <i class="fas fa-circle-notch text-5xl text-whatsapp-500"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
