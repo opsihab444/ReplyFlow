@@ -1,4 +1,4 @@
-const Storage = require('./src/storage/storage');
+const MongoStorage = require('./src/storage/mongoStorage');
 const BotService = require('./src/bot/botService');
 const WebServer = require('./src/server/app');
 
@@ -6,6 +6,7 @@ const WebServer = require('./src/server/app');
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = process.env.DATA_DIR || './data';
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://wpauto:opsihab123@cluster0.sbwhgpk.mongodb.net/?appName=Cluster0';
 
 // Global instances
 let storage;
@@ -22,11 +23,11 @@ async function startApplication() {
     console.log(`Data Directory: ${DATA_DIR}`);
     console.log('='.repeat(50));
 
-    // Initialize storage
-    console.log('\n[1/3] Initializing storage...');
-    storage = new Storage(DATA_DIR);
+    // Initialize storage with MongoDB
+    console.log('\n[1/3] Initializing storage with MongoDB...');
+    storage = new MongoStorage(MONGODB_URI, DATA_DIR);
     await storage.initialize();
-    console.log('✓ Storage initialized');
+    console.log('✓ Storage initialized with MongoDB');
 
     // Initialize bot service
     console.log('\n[2/3] Initializing bot service...');
